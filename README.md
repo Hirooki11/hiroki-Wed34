@@ -33,9 +33,12 @@
 
 ## 3. ソースコードの配置
 
-    git clone git@github.com:Hirooki11/hiroki-Wed34.git
+    git clone https://github.com/Hirooki11/hiroki-Wed34.git
 
 ## 4. ビルド＆起動
+
+    cd hiroki-wed34
+
 
     docker compose build
     docker compose up
