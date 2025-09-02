@@ -12,6 +12,9 @@
 
     sudo usermod -a G docker ec2-user
 
+usermodを反映するために一度ログアウトする必要があります。  
+sshの場合は一度ログアウトしログインしなおすことで反映させることができます。  
+  　
 ### Docker Composeのインストール
 
     sudo mkdir -p /usr/local/lib/docker/cli-plugins/
@@ -26,7 +29,7 @@
 
     git config --global init.defaultBranch main
 
-  名前とメールアドレスを設定する。メールアドレスはGitHubに登録しているものと同一のものにする
+  名前とメールアドレスを設定する。メールアドレスはGitHubに登録しているものと同一のものにする。
 
     git config --global user.name "お名前 ほげ太郎"
     git config --global user.email "kokoni-mail-address-iretene@example.com"
@@ -42,7 +45,7 @@
     docker compose build
     docker compose up
 
-上記のコマンドで起動できたら、ウェブブラウザでEC2インスタンスのホスト名またはIPアドレス(SSHでログインするときと同じもの)に接続する  
+上記のコマンドで起動できたら、ウェブブラウザでEC2インスタンスのホスト名またはIPアドレス(SSHでログインするときと同じもの)に接続する。  
 
 ブラウザのURLに`http://IPアドレス/bbs.php`と入力して開いてみる  
 掲示板が表示されたら成功
