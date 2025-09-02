@@ -10,7 +10,7 @@
  
 ### デフォルトのユーザー(ec2-user)でもsudoをつけずにdockerコマンドを実行できるように、dockerグループに追加
 
-    sudo usermod -a G docker ec2-user
+    sudo usermod -aG docker ec2-user
 
 usermodを反映するために一度ログアウトする必要があります。  
 sshの場合は一度ログアウトしログインしなおすことで反映させることができます。
