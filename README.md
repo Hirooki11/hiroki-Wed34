@@ -20,7 +20,7 @@
 
 ## 2. ソースコードの配置
 
-任意のディレクトリ上で`git clone git@github.com:Hirooki11/hiroki-Wed34.git`と入力する  
+    git clone git@github.com:Hirooki11/hiroki-Wed34.git
 
 ## 3. ビルド＆起動
 
@@ -33,3 +33,17 @@
 掲示板が表示されたら成功
 
 ## 4. テーブルの作成
+
+作成したDockerコンテナ内のMySQLサーバーにmysqlコマンドで接続する
+
+    docker compose exec mysql mysql example_db
+
+掲示板の投稿を保存するテーブルを作成する  
+
+電子掲示板(= BBS)の投稿(= entry)を保存するため、`bbs_entries'というテーブル名にします
+
+    CREATE TABLE `bbs_entries` (
+    `id` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `body` TEXT NOT NULL,
+    `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP
+); 
