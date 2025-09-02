@@ -39,7 +39,6 @@
 
     cd hiroki-wed34
 
-
     docker compose build
     docker compose up
 
