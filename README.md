@@ -80,7 +80,8 @@ aptの場合(debian ubuntu などの場合)
     CREATE TABLE `bbs_entries` (
         `id` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
         `body` TEXT NOT NULL,
-        `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP
+        `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
+        `image_filename` TEXT DEFAULT NULL
     ); 
 
 上記のコマンドで起動できたら、ウェブブラウザでEC2インスタンスのホスト名またはIPアドレス(SSHでログインするときと同じもの)に接続する。  
