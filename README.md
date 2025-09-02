@@ -26,8 +26,10 @@
 
     git config --global init.defaultBranch main
 
-  名前とメールアドレスを設定する
-  メールアドレスはGitHubに登録しているものと同一のものにする
+  名前とメールアドレスを設定する。メールアドレスはGitHubに登録しているものと同一のものにする
+
+    git config --global user.name "お名前 ほげ太郎"
+    git config --global user.email "kokoni-mail-address-iretene@example.com"
 
 ## 3. ソースコードの配置
 
