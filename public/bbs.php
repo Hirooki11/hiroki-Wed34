@@ -76,12 +76,28 @@ function h(string $s): string {
   return htmlspecialchars($s, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
 }
 
-function render_with_anchors(string $raw): string {
-  $t = h($raw);
-  $t = nl2br($t);
-  $t = preg_replace('/(&gt;){2}(\d+)/', '<a class="anchor" href="#p$2">&gt;&gt;$2</a>', $t);
-  return $t;
+function find_page_for_id(PDO $dbh, int $id, int $count_per_page, bool $order_desc = true): int {
+    if ($order_desc) {
+        $sql = 'SELECT COUNT(*) FROM bbs_entries WHERE id >= :id';
+    } else {
+        $sql = 'SELECT COUNT(*) FROM bbs_entries WHERE id <= :id';
+    }
+    $sth = $dbh->prepare($sql);
+    $sth->execute([':id' => $id]);
+    $rank = (int)$sth->fetchColumn();
+    return max(1, (int)ceil($rank / $count_per_page));
 }
+
+function render_with_anchors(PDO $dbh, string $text, int $count_per_page, bool $order_desc = true): string {
+    $text = htmlspecialchars($text, ENT_QUOTES, 'UTF-8');
+    $text = preg_replace_callback('/&gt;&gt;(\d+)/', function ($m) use ($dbh, $count_per_page, $order_desc) {
+        $id = (int)$m[1];
+        $page = find_page_for_id($dbh, $id, $count_per_page, $order_desc);
+        return '<a href="bbs.php?page=' . $page . '#p' . $id . '">&gt;&gt;' . $id . '</a>';
+    }, $text);
+    return nl2br($text);
+}
+
 ?>
 
 <head>
@@ -129,7 +145,7 @@ function render_with_anchors(string $raw): string {
     <dd><?= h($entry['created_at']) ?></dd>
     <dt>内容</dt>
     <dd>
-      <?= render_with_anchors($entry['body']) ?>
+			<?= render_with_anchors($dbh, $entry['body'], $count_per_page, true) ?>
       <?php if (!empty($entry['image_filename'])): ?>
         <div><img src="/image/<?= h($entry['image_filename']) ?>" style="max-height: 10em;"></div>
       <?php endif; ?>
