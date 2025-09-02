@@ -43,7 +43,7 @@
 電子掲示板(= BBS)の投稿(= entry)を保存するため、`bbs_entries'というテーブル名にします
 
     CREATE TABLE `bbs_entries` (
-    `id` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `body` TEXT NOT NULL,
-    `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP
-); 
+        `id` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        `body` TEXT NOT NULL,
+        `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP
+    ); 
