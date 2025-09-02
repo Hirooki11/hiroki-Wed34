@@ -21,6 +21,10 @@ sshの場合は一度ログアウトしログインしなおすことで反映�
     sudo curl -SL https://github.com/docker/compose/releases/download/v2.36.0/docker-compose-linux-x86_64 -o /usr/local/lib/docker/cli-plugins/docker-compose
     sudo chmod +x /usr/local/lib/docker/cli-plugins/docker-compose
 
+インストールできたかの確認
+
+    docker compose version
+
 ## 2. Git インストール
 
     sudo yum install git -y
