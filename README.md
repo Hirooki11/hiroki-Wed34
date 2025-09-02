@@ -37,7 +37,7 @@
 
 ## 4. ビルド＆起動
 
-    cd hiroki-wed34
+    cd hiroki-Wed34
 
     docker compose build
     docker compose up
