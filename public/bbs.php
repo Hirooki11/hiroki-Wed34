@@ -43,18 +43,27 @@ $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 // 1ページあたりの行数を決める
 $count_per_page = 10;
 
-// ページ数に応じてスキップする行数を計算
-$skip_count = $count_per_page * ($page - 1);
-
 // テーブルの行数をSELECT COUNT で取得
 $count_sth = $dbh->prepare('SELECT COUNT(*) FROM bbs_entries;');
 $count_sth->execute();
 $count_all = $count_sth->fetchColumn();
-if ($skip_count >= $count_all) {
-  // スキップする行数が全行数より多かったらおかしいのでエラーメッセージを表示し、終了
-  print('このページは存在しません！');
-  return;
+
+if ($count_all === 0) {
+  // 0件ならフォームを表示したいので、1ページ目として扱う
+  $page = 1;
+  $skip_count = 0;
+} else {
+  // 最大ページを計算して範囲外ページを調整（or リダイレクトでも可）
+  $max_page = (int)ceil($count_all / $count_per_page);
+  if ($page > $max_page) {
+    // メッセージを出さずに最後のページに合わせる
+    $page = $max_page;
+  }
+  $skip_count = $count_per_page * ($page - 1);
 }
+
+// ページ数に応じてスキップする行数を計算
+$skip_count = $count_per_page * ($page - 1);
 
 // テーブルからデータを取得
 $select_sth = $dbh->prepare('SELECT * FROM bbs_entries ORDER BY created_at DESC LIMIT :count_per_page OFFSET :skip_count');

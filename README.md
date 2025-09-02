@@ -4,8 +4,8 @@
 
 ### サーバー上で以下のコマンドを実行し、Dockerをインストール
 
-    sudo yum install -y docker 
-    sudo systemctl start docker 
+    sudo yum install -y docker
+    sudo systemctl start docker
     sudo systemctl enable docker
  
 ### デフォルトのユーザー(ec2-user)でもsudoをつけずにdockerコマンドを実行できるように、dockerグループに追加
@@ -33,7 +33,7 @@ sshの場合は一度ログアウトしログインしなおすことで反映�
 
     git config --global init.defaultBranch main
 
-  名前とメールアドレスを設定する。メールアドレスはGitHubに登録しているものと同一のものにする。
+名前とメールアドレスを設定する。メールアドレスはGitHubに登録しているものと同一のものにする。
 
     git config --global user.name "お名前 ほげ太郎"
     git config --global user.email "kokoni-mail-address-iretene@example.com"
