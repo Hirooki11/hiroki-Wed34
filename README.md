@@ -63,11 +63,6 @@ aptの場合(debian ubuntu などの場合)
     docker compose build
     docker compose up
 
-上記のコマンドで起動できたら、ウェブブラウザでEC2インスタンスのホスト名またはIPアドレス(SSHでログインするときと同じもの)に接続する。  
-
-ブラウザのURLに`http://IPアドレス/bbs.php`と入力して開いてみる  
-掲示板が表示されたら成功
-
 ## 5. テーブルの作成
 
 作成したDockerコンテナ内のMySQLサーバーにmysqlコマンドで接続する
@@ -83,3 +78,8 @@ aptの場合(debian ubuntu などの場合)
         `body` TEXT NOT NULL,
         `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP
     ); 
+
+上記のコマンドで起動できたら、ウェブブラウザでEC2インスタンスのホスト名またはIPアドレス(SSHでログインするときと同じもの)に接続する。  
+
+ブラウザのURLに`http://IPアドレス/bbs.php`と入力して開いてみる  
+掲示板が表示されたら成功
